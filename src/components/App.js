@@ -7,6 +7,7 @@ import RoundsPage from './RoundsPage.js';
 import CoursesPage from './CoursesPage.js';
 import BuddiesPage from './BuddiesPage.js';
 import AppMode from './AppMode.js';
+import ErrorBox from './ErrorBox.js';
 
 class App extends React.Component {
 

@@ -1,5 +1,7 @@
 import React from 'react';
+import App from './App.js';
 import AppMode from './AppMode.js'
+import ErrorBox from './ErrorBox.js';
 
 class LoginPage extends React.Component {
 
@@ -41,54 +43,18 @@ class LoginPage extends React.Component {
         }
     }
 
-    renderErrorBox = () => {
-        if (this.state.emailValid && this.state.passwordValid) {
-            return null;
-        }
-        if (!this.state.emailValid && this.state.passwordValid) {
-            return (
-                <p id="errorBox" className="alert alert-danger centered">
-                        <a id="emailError" href="#email" 
-                            className="alert-link" 
-                            ref={this.emailError}>
-                            Enter a valid email address<br/>
-                        </a>
-                </p>
-            );
-        }
-        if (this.state.emailValid && !this.state.passwordValid) {
-                return (
-                    <p id="errorBox" className="alert alert-danger centered">
-                            <a id="passwordError" 
-                                href="#password" 
-                                className="alert-link" 
-                                ref={this.passwordError}>
-                                Enter a valid password
-                            </a>
-                    </p>
-                );
-        }
-        //If here, both email and password are invalid
-        return (<p id="errorBox" className="alert alert-danger centered">
-                        <a id="emailError" href="#email" 
-                            className="alert-link" 
-                            ref={this.emailError}>
-                            Enter a valid email address<br/>
-                        </a>
-                        <a id="passwordError" 
-                            href="#password" 
-                            className="alert-link" 
-                            ref={this.passwordError}>
-                            Enter a valid password
-                        </a>
-                    </p>);
-    }
-
     render() {
         return(
             <div id="loginPage" className="mode-page">
                 <h1 className="mode-page-header">Log In</h1>
-                {this.renderErrorBox()}
+
+                <ErrorBox 
+                emailValid={this.state.emailValid}
+                passwordValid={this.state.passwordValid}
+                emailError={this.emailError}
+                passwordError={this.passwordError}
+                />
+
                 <form id="loginForm" className="centered" 
                     onSubmit={this.handleSubmit} noValidate>
                     <div className="mb-3">
